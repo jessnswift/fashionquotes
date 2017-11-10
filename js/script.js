@@ -16,5 +16,8 @@ buttonEL.addEventListener("click", printQuote, false);
 function printQuote() {
     var quoteElements = document.getElementsByClassName('quote');
     var quoteParagraph = quoteElements[0];
-    quoteParagraph.innerHTML = 'donkey';
+    quoteParagraph.innerHTML = quotes[randomNumberBetween(0, quotes.length -1)];
+}
+function randomNumberBetween(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
