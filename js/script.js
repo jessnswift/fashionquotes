@@ -26,11 +26,19 @@ buttonEL.addEventListener("click", printQuote, false);
 
 // Our event listener function for the button
 function printQuote() {
+    // TODO: added quotes, need to add source and citation.
+
     var quoteElements = document.getElementsByClassName('quote');
+    var sourceElements = document.getElementsByClassName('source');
     var quoteParagraph = quoteElements[0];
+    var sourceParagrapah = sourceElements[0];
     var randomQuoteObj = quotes[randomNumberBetween(0, quotes.length -1)];
-    quoteParagraph.innerHTML = randomQuoteObj.quote
+    quoteParagraph.innerHTML = randomQuoteObj.quote;
+    sourceParagrapah.innerHTML = randomQuoteObj.source;
+
 }
+
+
 function randomNumberBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
