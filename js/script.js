@@ -2,7 +2,7 @@ var quotes = [
   {
     quote: 'Always Play Dressup!',
     source: 'Beth Jones',
-    citation: 'BjonesStyle',
+    citation: 'BjonesStyle'
   },
 
   {
@@ -29,19 +29,22 @@ buttonEL.addEventListener("click", printQuote, false);
 
 // Our event listener function for the button
 function printQuote() {
-    // TODO: added quotes, need to add source and citation.
 
-    var quoteElements = document.getElementsByClassName('quote');
-    var sourceElements = document.getElementsByClassName('source');
+    var quoteElements   = document.getElementsByClassName('quote');
+    var sourceElements = document.getElementsByClassName('sourcespan');
     var citationElements = document.getElementsByClassName('citation');
-    console.log(citationElements);
-    var quoteParagraph = quoteElements[0];
-    var sourceParagraph = sourceElements[0];
-    var citationParagraph = citationElements[0];
+    var yearElements = document.getElementsByClassName('year');
+    var quoteSpan = quoteElements[0];
+    var sourceSpan = sourceElements[0];
+    var citationSpan = citationElements[0];
+    var yearSpan = yearElements[0];
     var randomQuoteObj = quotes[randomNumberBetween(0, quotes.length -1)];
-    quoteParagraph.innerHTML = randomQuoteObj.quote;
-    sourceParagraph.innerHTML = randomQuoteObj.source;
-    citationElements.innerHTML = randomQuoteObj.citation;
+    quoteSpan.innerHTML = randomQuoteObj.quote;
+    sourceSpan.innerHTML = randomQuoteObj.source;
+    citationSpan.innerHTML = randomQuoteObj.citation;
+    yearSpan.innerHTML = randomQuoteObj.year;
+
+// Array with no year displays undefined. 
 
 }
 
