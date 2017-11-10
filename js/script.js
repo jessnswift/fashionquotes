@@ -2,7 +2,7 @@ var quotes = [
   {
     quote: 'Always Play Dressup!',
     source: 'Beth Jones',
-    citation: 'BjonesStyle'
+    citation: 'BjonesStyle',
   },
 
   {
@@ -44,7 +44,13 @@ function printQuote() {
     citationSpan.innerHTML = randomQuoteObj.citation;
     yearSpan.innerHTML = randomQuoteObj.year;
 
-// Array with no year displays undefined. 
+      if (randomQuoteObj.year) {
+        yearSpan.innerHTML = ', ' + randomQuoteObj.year
+      } else {
+        yearSpan.innerHTML = ''
+      }
+
+// Array with no year displays undefined.
 
 }
 
