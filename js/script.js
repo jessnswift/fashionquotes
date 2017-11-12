@@ -6,16 +6,30 @@ var quotes = [
   },
 
   {
-    quote: 'I like my money right where I can see it, hanging in my closet.',
-    source: 'Carrie Bradshaw',
-    citation: 'Sex and the City',
-    year: 2003
+    quote: 'Fashion is like eating, you shouldn\'t stick to the same menu.',
+    source: 'Kenzo Takada',
+    citation: '',
   },
   {
     quote: 'When I first moved to New York and I was totally broke, sometimes I would buy Vogue instead of dinner. I felt it fed me more.',
     source: 'Carrie Bradshaw',
     citation: 'Sex and the City',
     year: 2001
+  },
+  {
+    quote: 'People will stare, make it worth their while.',
+    source: 'Harry Winston',
+    citation: '',
+  },
+  {
+    quote: 'You can have anything you want if you dress for it.',
+    source: 'Edith Head',
+    citation: '',
+  },
+  {
+    quote: 'Style is a way to say who you are without having to speak.',
+    source: 'Rachel Zoe',
+    citation: '',
   }
 ];
 
@@ -34,6 +48,11 @@ function printQuote() {
     var sourceElements = document.getElementsByClassName('sourcespan');
     var citationElements = document.getElementsByClassName('citation');
     var yearElements = document.getElementsByClassName('year');
+
+    var bodyTag = document.getElementsByTagName('body')[0];
+    bodyTag.style['background-color'] = 'red';
+    console.log(bodyTag);
+
     var quoteSpan = quoteElements[0];
     var sourceSpan = sourceElements[0];
     var citationSpan = citationElements[0];
@@ -49,8 +68,6 @@ function printQuote() {
       } else {
         yearSpan.innerHTML = ''
       }
-
-// Array with no year displays undefined.
 
 }
 
