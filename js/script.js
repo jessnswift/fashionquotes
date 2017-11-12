@@ -33,6 +33,10 @@ var quotes = [
   }
 ];
 
+var colors = [
+  'teal', 'pink', 'orange', 'purple', 'skyblue', 'turquoise', 'fuchsia', 'lime', 'maroon'
+]
+
 // event listener to respond to "Show another quote" button clicks
 // when user clicks anywhere on the button, the "printQuote" function is called
 
@@ -50,18 +54,19 @@ function printQuote() {
     var yearElements = document.getElementsByClassName('year');
 
     var bodyTag = document.getElementsByTagName('body')[0];
-    bodyTag.style['background-color'] = 'red';
-    console.log(bodyTag);
 
     var quoteSpan = quoteElements[0];
     var sourceSpan = sourceElements[0];
     var citationSpan = citationElements[0];
     var yearSpan = yearElements[0];
     var randomQuoteObj = quotes[randomNumberBetween(0, quotes.length -1)];
+    bodyTag.style['background-color'] = colors[randomNumberBetween(0, colors.length -1)];
     quoteSpan.innerHTML = randomQuoteObj.quote;
     sourceSpan.innerHTML = randomQuoteObj.source;
     citationSpan.innerHTML = randomQuoteObj.citation;
     yearSpan.innerHTML = randomQuoteObj.year;
+
+// Not all quotes will have a year
 
       if (randomQuoteObj.year) {
         yearSpan.innerHTML = ', ' + randomQuoteObj.year
