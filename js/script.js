@@ -8,7 +8,6 @@ var quotes = [
   {
     quote: 'Fashion is like eating, you shouldn\'t stick to the same menu.',
     source: 'Kenzo Takada',
-    citation: '',
   },
   {
     quote: 'When I first moved to New York and I was totally broke, sometimes I would buy Vogue instead of dinner. I felt it fed me more.',
@@ -19,20 +18,19 @@ var quotes = [
   {
     quote: 'People will stare, make it worth their while.',
     source: 'Harry Winston',
-    citation: '',
   },
   {
     quote: 'You can have anything you want if you dress for it.',
     source: 'Edith Head',
-    citation: '',
   },
   {
     quote: 'Style is a way to say who you are without having to speak.',
     source: 'Rachel Zoe',
-    citation: '',
   }
 ];
 
+
+// new colors to change with each quote
 var colors = [
   'teal', 'pink', 'orange', 'purple', 'skyblue', 'turquoise', 'fuchsia', 'lime', 'maroon'
 ]
@@ -48,35 +46,40 @@ buttonEL.addEventListener("click", printQuote, false);
 // Our event listener function for the button
 function printQuote() {
 
+    // select all of the elements we need
     var quoteElements   = document.getElementsByClassName('quote');
     var sourceElements = document.getElementsByClassName('sourcespan');
     var citationElements = document.getElementsByClassName('citation');
     var yearElements = document.getElementsByClassName('year');
-
     var bodyTag = document.getElementsByTagName('body')[0];
 
+    // get first element out of first selection
     var quoteSpan = quoteElements[0];
     var sourceSpan = sourceElements[0];
     var citationSpan = citationElements[0];
     var yearSpan = yearElements[0];
+
+    // set the html content
     var randomQuoteObj = quotes[randomNumberBetween(0, quotes.length -1)];
     bodyTag.style['background-color'] = colors[randomNumberBetween(0, colors.length -1)];
     quoteSpan.innerHTML = randomQuoteObj.quote;
     sourceSpan.innerHTML = randomQuoteObj.source;
-    citationSpan.innerHTML = randomQuoteObj.citation;
-    yearSpan.innerHTML = randomQuoteObj.year;
 
-// Not all quotes will have a year
-
+      // Not all quotes have a known year and/or a citation
       if (randomQuoteObj.year) {
         yearSpan.innerHTML = ', ' + randomQuoteObj.year
       } else {
         yearSpan.innerHTML = ''
       }
 
+      if (randomQuoteObj.citation) {
+        citationSpan.innerHTML = ', ' + randomQuoteObj.citation
+      } else {
+        citationSpan.innerHTML = ''
+      }
 }
 
-
+// function picking a number between min and max
 function randomNumberBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
