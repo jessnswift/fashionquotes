@@ -26,6 +26,8 @@ var quotes = [
   {
     quote: 'Style is a way to say who you are without having to speak.',
     source: 'Rachel Zoe',
+    citation: 'InStyle',
+    year: 2015
   }
 ];
 
@@ -60,7 +62,7 @@ function printQuote() {
     var yearSpan = yearElements[0];
 
     // set the html content
-    var randomQuoteObj = quotes[randomNumberBetween(0, quotes.length -1)];
+    var randomQuoteObj = getRamdomQuotes();
     bodyTag.style['background-color'] = colors[randomNumberBetween(0, colors.length -1)];
     quoteSpan.innerHTML = randomQuoteObj.quote;
     sourceSpan.innerHTML = randomQuoteObj.source;
@@ -82,4 +84,8 @@ function printQuote() {
 // function picking a number between min and max
 function randomNumberBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function getRamdomQuotes() {
+    return quotes[randomNumberBetween(0, quotes.length -1)];
 }
