@@ -31,7 +31,6 @@ var quotes = [
   }
 ];
 
-
 // new colors to change with each quote
 var colors = [
   'teal', 'pink', 'orange', 'purple', 'skyblue', 'turquoise', 'fuchsia', 'lime', 'maroon'
@@ -48,37 +47,13 @@ buttonEL.addEventListener("click", printQuote, false);
 // Our event listener function for the button
 function printQuote() {
 
-    // select all of the elements we need
-    var quoteElements   = document.getElementsByClassName('quote');
-    var sourceElements = document.getElementsByClassName('sourcespan');
-    var citationElements = document.getElementsByClassName('citation');
-    var yearElements = document.getElementsByClassName('year');
-    var bodyTag = document.getElementsByTagName('body')[0];
-
-    // get first element out of first selection
-    var quoteSpan = quoteElements[0];
-    var sourceSpan = sourceElements[0];
-    var citationSpan = citationElements[0];
-    var yearSpan = yearElements[0];
-
     // set the html content
-    var randomQuoteObj = getRamdomQuotes();
+    var randomQuoteObj = getRandomQuote();
+    var quoteString = constructQuote(randomQuoteObj.quote, randomQuoteObj.source, randomQuoteObj.citation, randomQuoteObj.year);
+    document.getElementById('quote-box').innerHTML = quoteString;
+    var bodyTag = document.getElementsByTagName('body') [0];
     bodyTag.style['background-color'] = colors[randomNumberBetween(0, colors.length -1)];
-    quoteSpan.innerHTML = randomQuoteObj.quote;
-    sourceSpan.innerHTML = randomQuoteObj.source;
 
-      // Not all quotes have a known year and/or a citation
-      if (randomQuoteObj.year) {
-        yearSpan.innerHTML = ', ' + randomQuoteObj.year
-      } else {
-        yearSpan.innerHTML = ''
-      }
-
-      if (randomQuoteObj.citation) {
-        citationSpan.innerHTML = ', ' + randomQuoteObj.citation
-      } else {
-        citationSpan.innerHTML = ''
-      }
 }
 
 // function picking a number between min and max
@@ -86,6 +61,20 @@ function randomNumberBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function getRamdomQuotes() {
+function getRandomQuote() {
     return quotes[randomNumberBetween(0, quotes.length -1)];
+}
+
+// quote-box
+function constructQuote(quote, source, citation, year) {
+  var quoteString = `
+      <p class="quote">${quote} </p>
+      <p class="source">${source}`;
+  if (citation) {
+      quoteString += `<span class="citation">${citation} </span>`}
+  if (year) {
+        quoteString += `<span class="year">${year} </span>`}
+  quoteString += '</p>'
+  return quoteString;
+
 }
