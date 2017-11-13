@@ -46,8 +46,9 @@ buttonEL.addEventListener("click", printQuote, false);
 
 // Our event listener function for the button
 function printQuote() {
+  clearInterval (interval);
 
-    // set the html content
+      // set the html content
     var randomQuoteObj = getRandomQuote();
     var quoteString = constructQuote(randomQuoteObj.quote, randomQuoteObj.source, randomQuoteObj.citation, randomQuoteObj.year);
     document.getElementById('quote-box').innerHTML = quoteString;
@@ -78,3 +79,6 @@ function constructQuote(quote, source, citation, year) {
   return quoteString;
 
 }
+
+// quote changes every 10 seconds
+var interval = setInterval(printQuote, 10000);
