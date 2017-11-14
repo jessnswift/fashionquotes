@@ -4,7 +4,6 @@ var quotes = [
     source: 'Beth Jones',
     citation: 'BjonesStyle',
   },
-
   {
     quote: 'Fashion is like eating, you shouldn\'t stick to the same menu.',
     source: 'Kenzo Takada',
@@ -48,37 +47,39 @@ buttonEL.addEventListener("click", printQuote, false);
 function printQuote() {
   clearInterval (interval);
 
-      // set the html content
-    var randomQuoteObj = getRandomQuote();
-    var quoteString = constructQuote(randomQuoteObj.quote, randomQuoteObj.source, randomQuoteObj.citation, randomQuoteObj.year);
-    document.getElementById('quote-box').innerHTML = quoteString;
-    var bodyTag = document.getElementsByTagName('body') [0];
-    bodyTag.style['background-color'] = colors[randomNumberBetween(0, colors.length -1)];
+  // set the html content
+  var randomQuoteObj = getRandomQuote();
+  var quoteString = constructQuote(randomQuoteObj.quote, randomQuoteObj.source, randomQuoteObj.citation, randomQuoteObj.year);
+  document.getElementById('quote-box').innerHTML = quoteString;
 
+  // change the background color
+  var bodyTag = document.getElementsByTagName('body') [0];
+  bodyTag.style['background-color'] = colors[randomNumberBetween(0, colors.length -1)];
 }
 
 // function picking a number between min and max
 function randomNumberBetween(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function getRandomQuote() {
-    return quotes[randomNumberBetween(0, quotes.length -1)];
+  return quotes[randomNumberBetween(0, quotes.length -1)];
 }
 
-// quote-box
+// construct HTML for quote-box
 function constructQuote(quote, source, citation, year) {
   var quoteString = `
-      <p class="quote">${quote} </p>
-      <p class="source">${source}`;
+    <p class="quote">${quote} </p>
+    <p class="source">${source}`;
   if (citation) {
-      quoteString += `<span class="citation">${citation} </span>`}
+    quoteString += `<span class="citation">${citation} </span>`;
+  }
   if (year) {
-        quoteString += `<span class="year">${year} </span>`}
+    quoteString += `<span class="year">${year} </span>`;
+  }
   quoteString += '</p>'
   return quoteString;
-
 }
 
-// quote changes every 10 seconds
+// quote changes every 10 seconds until button is clicked
 var interval = setInterval(printQuote, 10000);
