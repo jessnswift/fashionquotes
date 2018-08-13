@@ -61,7 +61,7 @@ quotes = [
     {
         "model": "quickstart.quote",
         "fields":   {
-            "quote": "Fashion is like eating, you shouldn\"t stick to the same menu.",
+            "quote": "Fashion is like eating, you shouldn\'t stick to the same menu.",
             "source": "Kenzo Takada"
         }
     },

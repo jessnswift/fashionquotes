@@ -1,27 +1,36 @@
 // new colors to change with each quote
-var colors = [
-  'teal', 'pink', 'orange', 'purple', 'skyblue', 'turquoise', 'fuchsia', 'lime', 'maroon', 'mango'
-]
-
-// event listener to respond to "Show another quote" button clicks
-// when user clicks anywhere on the button, the "printQuote" function is called
+var backgroundColourArray = [
+  "#03ddb6",
+  "#03c4a2",
+  "#02ac8e",
+  "#029379",
+  "#027b65",
+  "#0bcaa8",
+  "#0ab495",
+  "#099d82",
+  "#078770"
+];
 
 // Get a hold of the button by its id
-var buttonEL = document.getElementById('loadQuote')
+var buttonEL = document.getElementById("loadQuote");
 // Add an event listener to the button
 buttonEL.addEventListener("click", printQuote);
 
+// change background color every 10 secs and click
+function changeBackgroundColour() {
+  let bodyTag = document.getElementsByTagName("body")[0];
+  bodyTag.style["background-color"] =
+    backgroundColourArray[
+      randomNumberBetween(0, backgroundColourArray.length - 1)
+    ];
+}
 // Our event listener function for the button
 function printQuote() {
-  clearInterval (interval);
-
-  // set the html content
-
+  clearInterval(interval);
 
   // change the background color
-  var bodyTag = document.getElementsByTagName('body') [0];
-  bodyTag.style['background-color'] = colors[randomNumberBetween(0, colors.length -1)];
-  getRandomQuote()
+  changeBackgroundColour();
+  getRandomQuote();
 }
 
 // function picking a number between min and max
@@ -35,15 +44,23 @@ function getRandomQuote() {
     headers: {
       "Content-Type": "application/json"
     }
-  }).then((response) => {
-    return response.json()
-  }).then((response) => {
-    var randomQuoteObj = response;
-    var quoteString = constructQuote(randomQuoteObj.quote, randomQuoteObj.source, randomQuoteObj.year);
-    document.getElementById('quote-box').innerHTML = quoteString;
-  }).catch( error => {
-      console.log('error')
-  });
+  })
+    .then(response => {
+      return response.json();
+    })
+    .then(response => {
+      var randomQuoteObj = response;
+      var quoteString = constructQuote(
+        randomQuoteObj.quote,
+        randomQuoteObj.source,
+        randomQuoteObj.year
+      );
+      document.getElementById("quote-box").innerHTML = quoteString;
+      changeBackgroundColour();
+    })
+    .catch(error => {
+      console.log("error");
+    });
 }
 
 // construct HTML for quote-box
@@ -54,9 +71,9 @@ function constructQuote(quote, source, year) {
   if (year) {
     quoteString += `<span class="year">${year} </span>`;
   }
-  quoteString += '</p>'
+  quoteString += "</p>";
   return quoteString;
 }
 
 // quote changes every 10 seconds until button is clicked
-var interval = setInterval(printQuote, 10000);
+var interval = setInterval(getRandomQuote, 10000);
